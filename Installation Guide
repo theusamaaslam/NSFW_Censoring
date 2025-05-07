@@ -1,52 +1,87 @@
-## **Install Chocolatey on Windows**
+Here's your content converted into proper `README.md` format, styled with markdown headers, code blocks, and clean formatting for GitHub:
 
-Copy and paste this entire command into the **admin PowerShell window**:
+---
+
+````markdown
+# NSFW Censor — Video & Audio Moderation Tool 🛡️
+
+> Detect and censor NSFW content in videos and audio using AI models with word-level precision and smooth video censoring.
+
+---
+
+## ⚙️ Prerequisites (Windows)
+
+### ✅ Install Chocolatey
+
+Open **PowerShell as Administrator** and run:
 
 ```powershell
 Set-ExecutionPolicy Bypass -Scope Process -Force; `
 [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; `
 iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
-```
+````
 
-## Install FFmpeg via Choco
+### ✅ Install FFmpeg via Chocolatey
 
-In your VS Code terminal, just run:
+In your VS Code terminal:
 
 ```bash
 choco install ffmpeg -y
 ```
 
-Install Python 3.11 since pytorch-cuda is not compatible with later versions
+---
 
+## 🐍 Python Setup
+
+### ✅ Install Python 3.11
+
+Install Python 3.11 from [https://www.python.org/downloads/release/python-3110/](https://www.python.org/downloads/release/python-3110/)
+
+> ⚠️ Required for CUDA compatibility with PyTorch
+
+### ✅ Create a Virtual Environment
+
+```bash
+python3.11 -m venv venv
 ```
-python3.11 -m venv venv  
+
+### ✅ Activate the Virtual Environment
+
+```bash
+venv\Scripts\activate   # For Windows
 ```
 
-### Activate it:
+---
 
-- **Windows**: `venv\Scripts\activate`
+## 🧠 CUDA Setup (if you have a GPU)
 
-Install torch library for cuda
+Install PyTorch with CUDA 12.1 support:
 
+```bash
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
 ```
-pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121  
-```
 
-### Install dependencies:
+---
+
+## 📦 Install Other Dependencies
+
+Make sure you're in the project directory with a `requirements.txt`, then run:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## **Running the Script**
+---
 
-### Basic Usage:
+## ▶️ Running the Script
+
+### Basic Usage
 
 ```bash
 python script.py input_video.mp4
 ```
 
-### Advanced Usage with Arguments:
+### Advanced Usage with Arguments
 
 ```bash
 python script.py input_video.mp4 \
@@ -62,18 +97,45 @@ python script.py input_video.mp4 \
   --fade-duration 100
 ```
 
-## **Command Line Arguments Explained**
+---
 
-| Argument | Type | Default | Description |
-| --- | --- | --- | --- |
-| `video` | str | **Required** | Input video file path |
-| `--output` | str | `censored_output.mp4` | Output video file name |
-| `--video-method` | choice | `blur` | Options: `blur`, `pixelate`, `black` |
-| `--audio-method` | choice | `mute` | Options: `mute`, `beep`, `tone` |
-| `--transition-frames` | int | `30` | Smooth transition frames in and out of censored regions |
-| `--trim-threshold` | float | `5` | Trim NSFW segments longer than this many seconds |
-| `--width` | int | `1920` | Output video width |
-| `--height` | int | `1080` | Output video height |
-| `--nsfw-words-file` | str | `keyword.txt` | Custom list of NSFW words (1 per line) |
-| `--word-padding` | int (ms) | `100` | Padding in ms around NSFW words in audio |
-| `--fade-duration` | int (ms) | `50` | Fade-in/out duration for word-level censoring |
+## 🧾 Command Line Arguments
+
+| Argument              | Type     | Default               | Description                                   |
+| --------------------- | -------- | --------------------- | --------------------------------------------- |
+| `video`               | str      | **Required**          | Input video file path                         |
+| `--output`            | str      | `censored_output.mp4` | Output video file name                        |
+| `--video-method`      | choice   | `blur`                | Options: `blur`, `pixelate`, `black`          |
+| `--audio-method`      | choice   | `mute`                | Options: `mute`, `beep`, `tone`               |
+| `--transition-frames` | int      | `30`                  | Smooth transition frames for fade-in/out      |
+| `--trim-threshold`    | float    | `5`                   | Trim segments longer than this many seconds   |
+| `--width`             | int      | `1920`                | Output video width                            |
+| `--height`            | int      | `1080`                | Output video height                           |
+| `--nsfw-words-file`   | str      | `keyword.txt`         | File with NSFW keywords (1 per line)          |
+| `--word-padding`      | int (ms) | `100`                 | Padding in milliseconds around detected words |
+| `--fade-duration`     | int (ms) | `50`                  | Fade in/out duration around NSFW words        |
+
+---
+
+## ✅ Example Folder Structure
+
+```text
+nsfw-censor/
+├── 1920.py
+├── requirements.txt
+├── keyword.txt
+├── input_video.mp4
+```
+
+---
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
+
+```
+
+---
+
+Let me know if you want this broken into separate files (`INSTALL.md`, `USAGE.md`, etc.), or if you want it added to a `docs/` folder for a more structured repo layout.
+```
