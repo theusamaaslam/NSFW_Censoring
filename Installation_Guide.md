@@ -116,7 +116,7 @@ python script.py input_video.mp4 \
 
 ```text
 nsfw-censor/
-├── 1920.py
+├── script.py
 ├── requirements.txt
 ├── keyword.txt
 ├── input_video.mp4
