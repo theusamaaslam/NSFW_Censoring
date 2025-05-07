@@ -1,0 +1,79 @@
+## **Install Chocolatey on Windows**
+
+Copy and paste this entire command into the **admin PowerShell window**:
+
+```powershell
+Set-ExecutionPolicy Bypass -Scope Process -Force; `
+[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; `
+iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+```
+
+## Install FFmpeg via Choco
+
+In your VS Code terminal, just run:
+
+```bash
+choco install ffmpeg -y
+```
+
+Install Python 3.11 since pytorch-cuda is not compatible with later versions
+
+```
+python3.11 -m venv venv  
+```
+
+### Activate it:
+
+- **Windows**: `venv\Scripts\activate`
+
+Install torch library for cuda
+
+```
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121  
+```
+
+### Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+## **Running the Script**
+
+### Basic Usage:
+
+```bash
+python script.py input_video.mp4
+```
+
+### Advanced Usage with Arguments:
+
+```bash
+python script.py input_video.mp4 \
+  --output output_censored.mp4 \
+  --video-method pixelate \
+  --audio-method beep \
+  --transition-frames 50 \
+  --trim-threshold 10 \
+  --width 1280 \
+  --height 720 \
+  --nsfw-words-file keyword.txt \
+  --word-padding 150 \
+  --fade-duration 100
+```
+
+## **Command Line Arguments Explained**
+
+| Argument | Type | Default | Description |
+| --- | --- | --- | --- |
+| `video` | str | **Required** | Input video file path |
+| `--output` | str | `censored_output.mp4` | Output video file name |
+| `--video-method` | choice | `blur` | Options: `blur`, `pixelate`, `black` |
+| `--audio-method` | choice | `mute` | Options: `mute`, `beep`, `tone` |
+| `--transition-frames` | int | `30` | Smooth transition frames in and out of censored regions |
+| `--trim-threshold` | float | `5` | Trim NSFW segments longer than this many seconds |
+| `--width` | int | `1920` | Output video width |
+| `--height` | int | `1080` | Output video height |
+| `--nsfw-words-file` | str | `keyword.txt` | Custom list of NSFW words (1 per line) |
+| `--word-padding` | int (ms) | `100` | Padding in ms around NSFW words in audio |
+| `--fade-duration` | int (ms) | `50` | Fade-in/out duration for word-level censoring |
