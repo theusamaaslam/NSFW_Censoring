@@ -1,8 +1,3 @@
-Here's your content converted into proper `README.md` format, styled with markdown headers, code blocks, and clean formatting for GitHub:
-
----
-
-````markdown
 # NSFW Censor — Video & Audio Moderation Tool 🛡️
 
 > Detect and censor NSFW content in videos and audio using AI models with word-level precision and smooth video censoring.
