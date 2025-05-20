@@ -1,0 +1,17 @@
+flask
+werkzeug
+opencv-python
+numpy
+tqdm
+torch
+transformers
+Pillow
+librosa
+soundfile
+pydub
+openai-whisper
+pysrt
+transformers
+Pillow
+scikit-learn>=1.2.2
+moviepy
