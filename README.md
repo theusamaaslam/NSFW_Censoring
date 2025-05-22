@@ -27,3 +27,37 @@
 ```bash
 git clone https://github.com/yourusername/nsfw-censor.git
 cd nsfw-censor
+```
+
+### 2. Set up a virtual environment
+```bash
+python3 -m venv venv
+source venv/bin/activate  # On Linux/macOS
+# venv\Scripts\activate   # On Windows
+```
+
+### 3. Install FFmpeg
+FFmpeg is required for reading and writing video files.
+
+On Ubuntu you can install it via:
+```bash
+sudo apt-get install ffmpeg
+```
+For Windows or macOS, download a build from the [FFmpeg website](https://ffmpeg.org/) and ensure `ffmpeg` is on your `PATH`.
+
+### 4. Install Python dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### 5. Run the script
+```bash
+python script.py input_video.mp4
+```
+
+### 6. Advanced usage
+```bash
+python script.py input_video.mp4 --output censored.mp4 --video-method blur
+```
+Run `python script.py --help` to see all available arguments.
+
